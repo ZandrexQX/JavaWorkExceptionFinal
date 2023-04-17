@@ -46,7 +46,7 @@ public class FinalWork {
             String family = CheckString(strInput[0]);
             String name = CheckString(strInput[1]);
             String familySecond = CheckString(strInput[2]);
-            file = "E:/Разное/Java/FinalWorJava/"+family+".txt";
+            file = family+".txt";
         } catch (StrInputError e) {
             e.printStackTrace();
         }
