@@ -1,9 +1,9 @@
 package FinalWorJava;
 
-import java.text.ParseException;
+import java.io.IOException;
 
-public class DateInputError extends ParseException {
-    public DateInputError(String mess, int errorOffset) {
-        super(mess + ": неправильный формат даты", errorOffset);
+public class DateInputError extends IOException {
+    public DateInputError(String mess) {
+        super(mess + ": неправильный формат даты");
     }
 }

@@ -53,8 +53,8 @@ public class FinalWork {
         
         // Блок даты
         try {
-            Date date = CheckDate(strInput[3]);
-        } catch (ParseException e) {
+            String date = CheckDate(strInput[3]);
+        } catch (DateInputError e) {
             e.printStackTrace();
         }
 
@@ -76,10 +76,11 @@ public class FinalWork {
     }
 
     public static void WriterInput(String file, String [] text) {
-        try(FileWriter writer = new FileWriter(file)){
+        try(FileWriter writer = new FileWriter(file, true)){
             for (String string : text) {
                 writer.write("<"+string+">");
             }
+            writer.write("\n");
             
         } catch(IOException e){
             e.printStackTrace();
@@ -91,16 +92,9 @@ public class FinalWork {
         return str;
     }
 
-    public static Date CheckDate(String date) throws ParseException {
-        try {
-            SimpleDateFormat formatter = new SimpleDateFormat("dd.mm.yyyy");
-            Date dateOut = formatter.parse(date);
-            return dateOut;
-        }
-        catch(DateInputError e) {
-            e.printStackTrace();
-        }
-        return new Date();
+    public static String CheckDate(String date) throws DateInputError {
+        if (!date.matches("(0?[1-9]|[12][0-9]|3[01]).(0?[1-9]|1[012]).(19?[0-9][0-9]|20([01]?[0-9]|[2][0-3]))")) throw new DateInputError(date);
+        return date;
     }
 
     public static String [] CheckArray(String [] arr) throws ArrInputError {
